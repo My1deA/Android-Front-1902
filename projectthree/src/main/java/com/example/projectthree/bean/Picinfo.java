@@ -44,6 +44,6 @@ public class Picinfo {
 
     public static String[] uidArray={"123","aino","伊尔"};
     public static String[] descArray={"太好吃了吧","真甜","朋友圈打卡"};
-    public static String[] loactionArray={"地点：广州","地点：上海","地点：北京"};
+    public static String[] loactionArray={"广州","上海","北京"};
 
 }
