@@ -59,9 +59,8 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
         LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayout.VERTICAL, false);
         // 设置循环视图的布局管理器
         rv_dynamic.setLayoutManager(manager);
-        // 获取默认的所有公众号信息队列
+
         mAllArray = Picinfo.getDefaultList();
-        // 获取默认的当前公众号信息队列
         mPublicArray = Picinfo.getDefaultList();
 
         adapter = new LinenarDynamicAdapter(mContext, mPublicArray);

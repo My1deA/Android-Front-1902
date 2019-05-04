@@ -64,6 +64,7 @@ public class LinenarDynamicAdapter extends RecyclerView.Adapter<ViewHolder> impl
         Glide.with(mContext).load(pic.url).into(holder.iv_picture);
 
         holder.tv_delete.setVisibility((pic.bPressed) ? View.VISIBLE : View.GONE);
+        holder.tv_delete.setId(pic.id * 10 + DELETE);
         holder.ll_item.setId(pic.id * 10 + CLICK);
         holder.tv_delete.setOnClickListener(this);
         // 列表项的点击事件需要自己实现
@@ -124,7 +125,7 @@ public class LinenarDynamicAdapter extends RecyclerView.Adapter<ViewHolder> impl
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
             ll_item=itemView.findViewById(R.id.ll_item);
-            tv_username=itemView.findViewById(R.id.tv_username);
+            tv_username=itemView.findViewById(R.id.tv_uid);
             tv_desc=itemView.findViewById(R.id.tv_desc);
             iv_picture=itemView.findViewById(R.id.iv_picture);
             tv_location=itemView.findViewById(R.id.tv_location);

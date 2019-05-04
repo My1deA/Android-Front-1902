@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:background="@mipmap/ic_launcher_round"/>
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/tv_uid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用户名"
@@ -26,13 +26,23 @@
             android:paddingLeft="17dp"
             android:layout_toRightOf="@+id/iv_head"
             />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/close"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="left">
+        android:gravity="left"
+        android:layout_marginLeft="50dp">
 
         <TextView
             android:id="@+id/tv_desc"
@@ -50,7 +60,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp">
 
         <TextView
             android:layout_marginTop="4dp"
@@ -76,10 +87,11 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/like"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/tv_delete2"/>
 
         <TextView
-            android:id="@+id/tv_delete"
+            android:id="@+id/tv_delete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/login_blue"
