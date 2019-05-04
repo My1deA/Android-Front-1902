@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:text="注册界面"
+        android:background="@color/register_green"
+        android:gravity="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#f0f0f0">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="70dp"></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/users"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <View
+                    android:id="@+id/spacer"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true" />
+
+                <ImageView
+                    android:id="@+id/imager"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_toRightOf="@+id/spacer"
+                    android:background="@drawable/uid"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="5dp"/>
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toRightOf="@+id/imager"
+                    android:background="@drawable/editext_seletor"
+                    android:gravity="left|center"
+                    android:hint="请输入注册账号"
+                    android:inputType="text"
+                    android:maxLength="16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/login_grey"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <View
+                    android:id="@+id/spacer2"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"></View>
+
+                <ImageView
+                    android:id="@+id/imager2"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/upw"
+                    android:layout_toRightOf="@+id/spacer2"/>
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:hint="请输入注册密码"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:layout_toRightOf="@+id/imager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/login_grey"
+                    android:background="@drawable/editext_seletor"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注册"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:background="@color/register_green"/>
+
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/btn_blue"
+        app:navigationIcon="@drawable/back">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:paddingRight="50dp"
+                android:gravity="center"
+                android:text="发现世界"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_dynamic"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#aaaaff" />-->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f0f0f0" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
