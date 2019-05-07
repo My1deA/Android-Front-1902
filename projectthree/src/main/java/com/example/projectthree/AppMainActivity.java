@@ -1,5 +1,6 @@
 package com.example.projectthree;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,13 +19,24 @@ import com.example.projectthree.fragment.AppMessageFragment;
 public class AppMainActivity extends AppCompatActivity {
     private static final String TAG="AppMainActivity";
     private FragmentTabHost tabHost;
+    public String username=null;
+    public String password=null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_main);
+
+        Intent intent=getIntent();
+        Bundle temp=intent.getExtras();
+        username=temp.getString("username");
+        password=temp.getString("password");
+
+
         Bundle bundle=new Bundle();//用于传递信息
         bundle.putString("tag",TAG);
+        bundle.putString("username",username);
+        bundle.putString("password",password);
 
         tabHost=findViewById(android.R.id.tabhost);
         //把内容放在标签栏正上方

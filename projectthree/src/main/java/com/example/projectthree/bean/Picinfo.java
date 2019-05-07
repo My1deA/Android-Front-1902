@@ -11,12 +11,25 @@ public class Picinfo {
     public int id;
     private static int seq=0;
 
-    public Picinfo(String uid, String desc, String url, String location, boolean bPressed) {
+    public Picinfo(String uid, String desc, String location, boolean bPressed) {
         this.uid = uid;
         this.desc = desc;
         this.url = url;
         this.location = location;
         this.bPressed = false;
+        this.id=seq;
+        this.seq++;
+
+    }
+
+
+
+    public Picinfo(String uid, String desc, String url, String location,boolean bPressed) {
+        this.uid = uid;
+        this.desc = desc;
+        this.url = url;
+        this.location = location;
+        this.bPressed = bPressed;
         this.id=seq;
         this.seq++;
 

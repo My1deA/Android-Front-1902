@@ -40,6 +40,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG="UploadActivity";
     private Button btn_upload;
     private TextView tv_result;
+    private TextView tv_filename;
     private ProgressBar pb_horizontal;
 
     private static final MediaType JSON=MediaType.parse("application/json; charset=utf-8");
@@ -54,6 +55,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         tv_result=findViewById(R.id.tv_result);
+        tv_filename=findViewById(R.id.tv_filename);
         pb_horizontal=findViewById(R.id.pb_horizontal);
         findViewById(R.id.btn_upload).setOnClickListener(this);
         findViewById(R.id.btn_confrim).setOnClickListener(this);
@@ -84,16 +86,28 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
             if ("file".equalsIgnoreCase(uri.getScheme())){//使用第三方应用打开9-
                 path = uri.getPath();
                 tv_result.setText(path);
+
+                fileName=path.substring(path.lastIndexOf('/')+1);
+                tv_filename.setText(fileName);
+
                 Toast.makeText(this,path+"11111",Toast.LENGTH_SHORT).show();
                 return;
             }
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
                 path = fileChooseUtil.getPath(this, uri);
                 tv_result.setText(path);
+
+                fileName=path.substring(path.lastIndexOf('/')+1);
+                tv_filename.setText(fileName);
+
                 Toast.makeText(this,path,Toast.LENGTH_SHORT).show();
             } else {//4.4以下下系统调用方法
                 path = getRealPathFromURI(uri);
                 tv_result.setText(path);
+
+                fileName=path.substring(path.lastIndexOf('/')+1);
+                tv_filename.setText(fileName);
+
                 Toast.makeText(UploadActivity.this, path+"222222", Toast.LENGTH_SHORT).show();
             }
         }
@@ -111,13 +125,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         return res;
     }
 
-    public void multiFileUpload()
-    {
-        String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
-        path=tv_result.getText().toString().trim();
-        File file=new File(path);
-//        fileName=path.substring(path.lastIndexOf("\\"));
-//        if(fileName.endsWith(".jpg")||fileName.endsWith(".png")||fileName.endsWith(".jpeg")){
+    //        if(fileName.endsWith(".jpg")||fileName.endsWith(".png")||fileName.endsWith(".jpeg")){
 //            type="picture";
 //
 //        }else if(fileName.endsWith(".mp4")||fileName.endsWith(".mp3")||fileName.endsWith(".3gp")||
@@ -126,32 +134,51 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 //        }
 
 
+    public void multiFileUpload()
+    {
+        String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+        path=tv_result.getText().toString().trim();
+        File file=new File(path);
+
         if (!file.exists())
         {
             Toast.makeText(UploadActivity.this, "文件不存在，请修改文件路径", Toast.LENGTH_SHORT).show();
             return;
         }
         Map<String, String> params = new HashMap<>();
-        params.put("username", "张鸿洋");
-        params.put("password", "123");
-//        params.put("time", DateUtil.getNowDateTime());
-//        params.put("type",type);
-
+        params.put("uid", "7");
+        params.put("time", DateUtil.getNowDateTime());
+        params.put("text", "好好吃啊");
+        params.put("location", "广州");
+        params.put("type","图片");
 
 
         String url=mBaseUrl;
+
+
+
         OkHttpUtils.post()//
-                .addFile("mFile", "service_2.jpg", file)//
+                .addFile("mFile", fileName, file)//
                 .url(url)
                 .params(params)//
                 .build()//
                 .execute(new MyStringCallback());
-        //        File file = new File(Environment.getExternalStorageDirectory(), "1.jpg");
-        //        File file2 = new File(Environment.getExternalStorageDirectory(), "2.txt");
-        //        String url = mBaseUrl + "user!uploadFile";
-        //      .addFile("mFile", "service_2.txt", file2)//
-
     }
+
+
+
+
+
+    //        File file = new File(Environment.getExternalStorageDirectory(), "1.jpg");
+    //        File file2 = new File(Environment.getExternalStorageDirectory(), "2.txt");
+    //        String url = mBaseUrl + "user!uploadFile";
+    //      .addFile("mFile", "service_2.txt", file2)//
+//        Map<String, String> params = new HashMap<>();
+//        params.put("username", "张鸿洋");
+//        params.put("password", "12");
+//        params.put("time", "123");
+//        params.put("type","图片");
+
 
     public class MyStringCallback extends StringCallback
     {

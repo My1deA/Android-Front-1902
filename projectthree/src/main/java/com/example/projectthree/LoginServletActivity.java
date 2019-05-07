@@ -34,6 +34,8 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
     private static String url="http://172.16.86.194:8080/MyWebTest/loginServlet";
     private final static int Login=1;
     private final static int Fail=2;
+    String username=null;
+    String password=null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btn_login){
-            String username=et_username.getText().toString().trim();
-            String password=et_password.getText().toString().trim();
+            username=et_username.getText().toString().trim();
+            password=et_password.getText().toString().trim();
 
             new Thread(new Runnable() {
                 @Override
@@ -100,7 +102,17 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
                 if(info[1].equalsIgnoreCase("SUCC")){
                     tv_result.setText("Login SUCC");
                     Toast.makeText(LoginServletActivity.this,"Succ",Toast.LENGTH_SHORT).show();
+
+                    MainApplication.getInstance().UserinfoMap.put("username",username);
+                    MainApplication.getInstance().UserinfoMap.put("password",password);
+
+
                     Intent intent=new Intent(LoginServletActivity.this,AppMainActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("username",username);
+                    bundle.putString("password",password);
+//                    Toast.makeText(LoginServletActivity.this,username+" "+password,Toast.LENGTH_SHORT).show();
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }else{
                     tv_result.setText("Login Fail 请检查用户名和密码是否正确");

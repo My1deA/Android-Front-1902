@@ -28,14 +28,44 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/iv_icon1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"/>
 
-    <Button
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_dynamic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f0f0f0" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>
+
+
+<!--<Button-->
+<!--android:id="@+id/btn_start"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="Start"/>-->
+
+<!--<TextView-->
+<!--android:id="@+id/tv_result"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="100dp"-->
+<!--android:textColor="@color/black"-->
+<!--android:textSize="12sp"/>-->
+
+<!--<ImageView-->
+<!--android:id="@+id/iv_icon1"-->
+<!--android:layout_width="200dp"-->
+<!--android:layout_height="200dp"-->
+<!--android:layout_gravity="center"/>-->
+
+<!--<Button-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content" />-->

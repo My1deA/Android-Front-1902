@@ -27,5 +27,14 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:text="上传"/>
+
+
 
 </LinearLayout>

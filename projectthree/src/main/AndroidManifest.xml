@@ -39,7 +39,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:name=".MainApplication">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,10 +49,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AppMainActivity"/>
-        <activity android:name=".LoginServletActivity"/>
-        <activity android:name=".RegisterServletActivity"/>
-        <activity android:name=".UploadActivity"/>
+        <activity android:name=".AppMainActivity" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".LoginServletActivity" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".RegisterServletActivity" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".UploadActivity" android:theme="@style/AppCompatTheme"/>
     </application>
 
 </manifest>

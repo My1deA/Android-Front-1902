@@ -26,4 +26,6 @@
     <color name="btn_grey">#cccccc</color>
     <color name="register_green">#458B74</color>
     <color name="icon_blue">#CAE1FF</color>
+    <color name="uid_orange">#FF6347</color>
+    <color name="location_grey">#D3D3D3</color>
 </resources>
