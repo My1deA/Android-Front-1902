@@ -12,7 +12,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-import com.example.test.R;
+import com.example.projectthree.R;
+
 
 public class VolumeDialog implements OnSeekBarChangeListener, OnKeyListener {
     private Dialog dialog; // 声明一个对话框对象

@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +54,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     private String path;
     private String fileName;
     private String type;
+    private ImageView iv_fileimage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +65,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         pb_horizontal=findViewById(R.id.pb_horizontal);
         findViewById(R.id.btn_upload).setOnClickListener(this);
         findViewById(R.id.btn_confrim).setOnClickListener(this);
+        iv_fileimage=findViewById(R.id.iv_fileImage);
     }
 
     @Override
@@ -90,6 +97,9 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 fileName=path.substring(path.lastIndexOf('/')+1);
                 tv_filename.setText(fileName);
 
+                Bitmap bitmap=getLoacalBitmap(path);
+                iv_fileimage.setImageBitmap(bitmap);
+
                 Toast.makeText(this,path+"11111",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -99,6 +109,8 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
                 fileName=path.substring(path.lastIndexOf('/')+1);
                 tv_filename.setText(fileName);
+                Bitmap bitmap=getLoacalBitmap(path);
+                iv_fileimage.setImageBitmap(bitmap);
 
                 Toast.makeText(this,path,Toast.LENGTH_SHORT).show();
             } else {//4.4以下下系统调用方法
@@ -107,6 +119,8 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
                 fileName=path.substring(path.lastIndexOf('/')+1);
                 tv_filename.setText(fileName);
+                Bitmap bitmap=getLoacalBitmap(path);
+                iv_fileimage.setImageBitmap(bitmap);
 
                 Toast.makeText(UploadActivity.this, path+"222222", Toast.LENGTH_SHORT).show();
             }
@@ -167,8 +181,6 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-
-
     //        File file = new File(Environment.getExternalStorageDirectory(), "1.jpg");
     //        File file2 = new File(Environment.getExternalStorageDirectory(), "2.txt");
     //        String url = mBaseUrl + "user!uploadFile";
@@ -223,6 +235,17 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         {
             Log.e(TAG, "inProgress:" + progress);
             pb_horizontal.setProgress((int) (100 * progress));
+        }
+    }
+
+    public static Bitmap getLoacalBitmap(String url) {
+        try {
+            FileInputStream fis = new FileInputStream(url);
+            return BitmapFactory.decodeStream(fis);  ///把流转化为Bitmap图片
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

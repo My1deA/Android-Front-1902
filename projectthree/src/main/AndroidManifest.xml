@@ -53,6 +53,16 @@
         <activity android:name=".LoginServletActivity" android:theme="@style/AppCompatTheme"/>
         <activity android:name=".RegisterServletActivity" android:theme="@style/AppCompatTheme"/>
         <activity android:name=".UploadActivity" android:theme="@style/AppCompatTheme"/>
+
+        <activity
+            android:name=".MoviePlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+            android:screenOrientation="sensor"
+            android:theme="@style/FullScreenTheme"
+            android:supportsPictureInPicture="true" />
+
+        <activity android:name=".MyGalleryActivity"/>
+
     </application>
 
 </manifest>

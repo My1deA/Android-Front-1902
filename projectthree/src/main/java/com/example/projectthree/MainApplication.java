@@ -3,6 +3,9 @@ package com.example.projectthree;
 import android.app.Application;
 import android.util.Log;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.util.HashMap;
 
 public class MainApplication extends Application {
@@ -23,6 +26,7 @@ public class MainApplication extends Application {
         // 在打开应用时对静态的应用实例赋值
         mApp = this;
         Log.d(TAG, "onCreate");
+        initImageLoader();
     }
 
     @Override
@@ -31,5 +35,11 @@ public class MainApplication extends Application {
         super.onTerminate();
     }
 
+
+    private void initImageLoader() {
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
+        ImageLoader.getInstance().init(configuration);
+
+    }
 
 }

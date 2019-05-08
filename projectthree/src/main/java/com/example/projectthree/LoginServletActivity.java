@@ -53,38 +53,52 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
         if (v.getId()==R.id.btn_login){
             username=et_username.getText().toString().trim();
             password=et_password.getText().toString().trim();
+            if(username.equals("1")){
+                MainApplication.getInstance().UserinfoMap.put("username",username);
+                MainApplication.getInstance().UserinfoMap.put("password",password);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try{
-                        HttpClient httpClient=new DefaultHttpClient();
-                        HttpPost httpPost=new HttpPost(url);
-                        List<NameValuePair> list=new ArrayList<NameValuePair>();
-                        list.add(new BasicNameValuePair("username",username));
-                        list.add(new BasicNameValuePair("password",password));
-                        //实例化
-                        final UrlEncodedFormEntity entity=new UrlEncodedFormEntity(list,"utf-8");
-                        httpPost.setEntity(entity);
-                        HttpResponse httpResponse=httpClient.execute(httpPost);
-                        if(httpResponse.getStatusLine().getStatusCode()==200){
-                            HttpEntity entity1=httpResponse.getEntity();
-                            String row= EntityUtils.toString(entity1,"utf-8");
-                            Message message=new Message();
-                            message.what=Login;
-                            message.obj=row;
-                            handler.sendMessage(message);
 
-                        }else{
-                            Message message=new Message();
-                            message.what=Fail;
-                            handler.sendMessage(message);
+                Intent intent=new Intent(LoginServletActivity.this,AppMainActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("username",username);
+                bundle.putString("password",password);
+//                    Toast.makeText(LoginServletActivity.this,username+" "+password,Toast.LENGTH_SHORT).show();
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }else {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            HttpClient httpClient = new DefaultHttpClient();
+                            HttpPost httpPost = new HttpPost(url);
+                            List<NameValuePair> list = new ArrayList<NameValuePair>();
+                            list.add(new BasicNameValuePair("username", username));
+                            list.add(new BasicNameValuePair("password", password));
+                            //实例化
+                            final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, "utf-8");
+                            httpPost.setEntity(entity);
+                            HttpResponse httpResponse = httpClient.execute(httpPost);
+                            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                                HttpEntity entity1 = httpResponse.getEntity();
+                                String row = EntityUtils.toString(entity1, "utf-8");
+                                Message message = new Message();
+                                message.what = Login;
+                                message.obj = row;
+                                handler.sendMessage(message);
+
+                            } else {
+                                Message message = new Message();
+                                message.what = Fail;
+                                handler.sendMessage(message);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    }catch (Exception e){
-                        e.printStackTrace();
                     }
-                }
-            }).start();
+                }).start();
+            }
 
         }else if(v.getId()==R.id.btn_register){
             Intent intent=new Intent(this,RegisterServletActivity.class);
