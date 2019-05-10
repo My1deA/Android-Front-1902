@@ -14,9 +14,14 @@ public class NineGridItem implements Serializable {
     public String text;
     public String location;
     public String type;
+    public String url;
     public boolean bPressed;
     public int id;
     private static int seq=0;
+
+    public NineGridItem(){
+
+    }
 
     public NineGridItem(String uid, String time, List<String> urlList, String text, String location, String type) {
         this.id=seq;
@@ -29,10 +34,9 @@ public class NineGridItem implements Serializable {
         this.text = text;
         this.location = location;
         this.type = type;
-
     }
 
-    public NineGridItem(String uid, String time, List<String> urlList, String text, String location, String type, boolean bPressed) {
+    public NineGridItem(String uid, String time, List<String> urlList, String text, String location, String type,String url) {
         this.id=seq;
         this.seq++;
         bPressed=false;
@@ -43,11 +47,34 @@ public class NineGridItem implements Serializable {
         this.text = text;
         this.location = location;
         this.type = type;
+        this.url=url;
+
+    }
+
+    public NineGridItem(String uid, String time, List<String> urlList, String text, String location, String type,String url, boolean bPressed) {
+        this.id=seq;
+        this.seq++;
+
+        this.uid = uid;
+        this.time = time;
+        this.urlList = urlList;
+        this.text = text;
+        this.location = location;
+        this.type = type;
         this.bPressed = bPressed;
+        this.url=url;
     }
 
     public String getUid() {
         return uid;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setUid(String uid) {

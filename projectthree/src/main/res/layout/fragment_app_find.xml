@@ -5,12 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_head"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/btn_blue"
-        app:navigationIcon="@drawable/back">
+        app:navigationIcon="@drawable/back"
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,6 +31,20 @@
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text="发现世界"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
 
 
     <!--<android.support.v7.widget.RecyclerView-->

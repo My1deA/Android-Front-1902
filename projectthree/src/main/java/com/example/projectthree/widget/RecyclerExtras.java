@@ -17,4 +17,6 @@ public class RecyclerExtras {
     public interface OnItemDeleteClickListener {
         void onItemDeleteClick(View view, int position);
     }
+
+
 }

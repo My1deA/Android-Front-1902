@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:background="@color/black" >
 
-    <com.example.test.widget.MovieView
+    <com.example.projectthree.widget.MovieView
         android:id="@+id/mv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <com.example.test.widget.VideoController
+    <com.example.projectthree.widget.VideoController
         android:id="@+id/vc_play"
         android:layout_width="match_parent"
         android:layout_height="70dp"

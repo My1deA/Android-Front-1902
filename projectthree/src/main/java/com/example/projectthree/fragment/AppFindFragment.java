@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.projectthree.R;
-import com.example.projectthree.adapter.LinenarDynamicAdapter;
+import com.example.projectthree.useless.LinenarDynamicAdapter;
 import com.example.projectthree.bean.Picinfo;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemClickListener;

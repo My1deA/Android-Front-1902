@@ -34,6 +34,7 @@ android {
         abortOnError false
     }
 
+    useLibrary 'org.apache.http.legacy'
 }
 allprojects {
     repositories {
@@ -73,6 +74,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.nostra13.universalimageloader/universal-image-loader
     implementation group: 'com.nostra13.universalimageloader', name: 'universal-image-loader', version: '1.9.3'
+
+//    implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.2'
     
 
 }

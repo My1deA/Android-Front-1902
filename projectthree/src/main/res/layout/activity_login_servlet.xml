@@ -7,6 +7,12 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textColor="@color/white"
@@ -42,7 +48,7 @@
 
                 <View
                     android:id="@+id/spacer"
-                    android:layout_width="20dp"
+                    android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true" />
 
@@ -80,7 +86,7 @@
 
                 <View
                     android:id="@+id/spacer2"
-                    android:layout_width="20dp"
+                    android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"></View>
 

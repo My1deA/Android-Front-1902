@@ -1,4 +1,6 @@
-package com.example.projectthree.adapter;
+package com.example.projectthree.useless;
+
+
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -21,13 +23,13 @@ import com.example.projectthree.widget.RecyclerExtras.OnItemLongClickListener;
 import java.util.ArrayList;
 
 
-public class LinenarDynamicAdapter extends RecyclerView.Adapter<ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
+public class MyLinenarDynamicAdapter extends RecyclerView.Adapter<ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     private final static String TAG="LinearDynamicAdapter";
     private Context mContext;
     private ArrayList<Picinfo> mPublicArray;
 
-    public LinenarDynamicAdapter(Context context, ArrayList<Picinfo> publicArray) {
+    public MyLinenarDynamicAdapter(Context context, ArrayList<Picinfo> publicArray) {
         mContext = context;
         mPublicArray = publicArray;
     }

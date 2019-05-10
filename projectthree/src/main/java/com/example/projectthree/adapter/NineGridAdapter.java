@@ -1,14 +1,20 @@
 package com.example.projectthree.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.projectthree.MoviePlayActivity;
 import com.example.projectthree.R;
 import com.example.projectthree.bean.NineGridItem;
 import com.example.projectthree.bean.Picinfo;
@@ -19,6 +25,8 @@ import com.example.projectthree.widget.RecyclerExtras;
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+import wseemann.media.FFmpegMediaMetadataRetriever;
 
 public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener{
 
@@ -46,8 +54,7 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.layout.setIsShowAll(mList.get(position).isShowAll);
-        holder.layout.setUrlList(mList.get(position).urlList);
+
 
         NineGridItem item=mList.get(position);
         holder.tv_uid.setText(item.getUid());
@@ -55,15 +62,37 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
         holder.tv_location.setText(item.getLocation());
         holder.tv_time.setText(item.getTime());
 
+
+        if(item.getType().equals("图片")){
+            holder.layout.setIsShowAll(mList.get(position).isShowAll);
+            holder.layout.setUrlList(mList.get(position).urlList);
+        }else{
+            holder.fl_video.setVisibility(View.VISIBLE);
+            getImage(holder.iv_videopic,item.getUrlList().get(0));
+            holder.fl_video.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext, MoviePlayActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("path",mList.get(position).getUrlList().get(0));
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+                }
+            });
+
+
+        }
+
+
+
         holder.tv_delete.setVisibility((item.bPressed) ? View.VISIBLE : View.GONE);
         holder.tv_delete.setId(item.id * 10 + DELETE);
         holder.ll_item.setId(item.id * 10 + CLICK);
         holder.tv_delete.setOnClickListener(this);
-        // 列表项的点击事件需要自己实现
+//         列表项的点击事件需要自己实现
         holder.ll_item.setOnClickListener(this);
-        // 列表项的长按事件需要自己实现
+//         列表项的长按事件需要自己实现
         holder.ll_item.setOnLongClickListener(this);
-
 
     }
 
@@ -78,6 +107,10 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
         public TextView tv_text;
         public TextView tv_time;
         public LinearLayout ll_item;
+        public FrameLayout fl_video;
+        public ImageView iv_pause;
+        public ImageView iv_videopic;
+        public TextView tv_url;
 
 
         public ViewHolder(View itemView) {
@@ -89,6 +122,10 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
             tv_text=itemView.findViewById(R.id.tv_text);
             tv_location=itemView.findViewById(R.id.tv_location);
             tv_time=itemView.findViewById(R.id.tv_time);
+            fl_video=itemView.findViewById(R.id.fl_video);
+            iv_pause=itemView.findViewById(R.id.iv_pause);
+            iv_videopic=itemView.findViewById(R.id.iv_videopic);
+            tv_url=itemView.findViewById(R.id.tv_url);
 
         }
     }
@@ -117,19 +154,36 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
         return pos;
     }
 
+    public void getImage(ImageView iv_image,String path){
+
+        FFmpegMediaMetadataRetriever retriever = new  FFmpegMediaMetadataRetriever();
+        try {
+            retriever.setDataSource(path);
+            Bitmap bitmap = retriever.getFrameAtTime(100000,FFmpegMediaMetadataRetriever.OPTION_CLOSEST_SYNC );  //这个时间就是第一秒的
+            iv_image.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            retriever.release();
+        }
+
+    }
+
     @Override
     public void onClick(View v) {
-        int position = getPosition((int) v.getId() / 10);
-        int type = (int) v.getId() % 10;
-        if (type == CLICK) { // 正常点击，则触发点击监听器的onItemClick方法
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(v, position);
+
+            int position = getPosition((int) v.getId() / 10);
+            int type = (int) v.getId() % 10;
+            if (type == CLICK) { // 正常点击，则触发点击监听器的onItemClick方法
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v, position);
+                }
+            } else if (type == DELETE) { // 点击了删除按钮，则触发删除监听器的onItemDeleteClick方法
+                if (mOnItemDeleteClickListener != null) {
+                    mOnItemDeleteClickListener.onItemDeleteClick(v, position);
+                }
             }
-        } else if (type == DELETE) { // 点击了删除按钮，则触发删除监听器的onItemDeleteClick方法
-            if (mOnItemDeleteClickListener != null) {
-                mOnItemDeleteClickListener.onItemDeleteClick(v, position);
-            }
-        }
     }
 
     @Override

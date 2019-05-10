@@ -56,6 +56,26 @@
             android:layout_marginTop="8dp"
             app:sapcing="4dp" />
 
+        <FrameLayout
+            android:id="@+id/fl_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/iv_videopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/iv_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/pause"/>
+
+        </FrameLayout>
+
+
+
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
@@ -87,6 +107,12 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </LinearLayout>

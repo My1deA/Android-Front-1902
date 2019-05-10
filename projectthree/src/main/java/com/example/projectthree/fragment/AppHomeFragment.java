@@ -1,7 +1,7 @@
 package com.example.projectthree.fragment;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,14 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bumptech.glide.Glide;
+import com.example.projectthree.MoviePlayActivity;
 import com.example.projectthree.R;
-import com.example.projectthree.adapter.LinenarDynamicAdapter;
 import com.example.projectthree.adapter.NineGridAdapter;
 import com.example.projectthree.bean.NineGridItem;
 import com.example.projectthree.bean.Picinfo;
@@ -32,16 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectthree.widget.RecyclerExtras.OnItemClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemDeleteClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemLongClickListener;
 import com.example.projectthree.widget.SpacesItemDecoration;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,6 +49,7 @@ import org.apache.http.util.EntityUtils;
 
 public class AppHomeFragment extends Fragment implements View.OnClickListener,OnItemClickListener, OnItemLongClickListener, OnItemDeleteClickListener,OnRefreshListener{
     private static final String TAG="HomeFragment";
+    private int conunt=5;
     protected View mView;
     protected Context mContext;
     private ArrayList<Picinfo> PublicArray=new ArrayList<Picinfo>();//数据链表
@@ -86,13 +81,21 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     }
 
     private void initRecyclerDynamic() {
-
         rv_manager = new LinearLayoutManager(mContext);
         rv_dynamic.setLayoutManager(rv_manager);
-
         adapter = new NineGridAdapter(mContext);
         adapter.setList(mList);
         rv_dynamic.setAdapter(adapter);
+
+        // 设置线性列表的点击监听器
+        adapter.setOnItemClickListener(this);
+        // 设置线性列表的长按监听器
+        adapter.setOnItemLongClickListener(this);
+        // 设置线性列表的删除按钮监听器
+        adapter.setOnItemDeleteClickListener(this);
+        rv_dynamic.setItemAnimator(new DefaultItemAnimator());
+        // 给rv_dynamic添加列表项之间的空白装饰
+        rv_dynamic.addItemDecoration(new SpacesItemDecoration(1));
 
     }
 
@@ -106,6 +109,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     private Runnable mRefresh = new Runnable() {
         @Override
         public void run() {
+            srl_dynamic.setRefreshing(false);
             Toast.makeText(mContext,"没有更多消息",Toast.LENGTH_SHORT).show();
         }
     };
@@ -124,7 +128,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
                     //传输数据
                     List<NameValuePair> list=new ArrayList<NameValuePair>();
                     list.add(new BasicNameValuePair("download","download"));
-                    list.add(new BasicNameValuePair("count","count"));
+                    list.add(new BasicNameValuePair("count",String.valueOf(conunt)));
 
                     UrlEncodedFormEntity entity=new UrlEncodedFormEntity(list,"utf-8");
                     httpPost.setEntity(entity);
@@ -151,7 +155,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
         @Override
         public void handleMessage(Message msg) {
             if(msg.what==download){
-                initPublicArray((String) msg.obj);
+                initPublicArray((String) msg.obj);//译码
                 initRecyclerDynamic(); // 初始化动态线性布局的循环视图
             }
         }
@@ -159,6 +163,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     };
 
     private void initPublicArray(String jstr) {
+        //ali size() org length()
         JSONArray array= JSON.parseArray(jstr);
         for(int i=0;i<array.size();i++){
 
@@ -170,12 +175,14 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
             String location=jsonObject.getString("location");
             String type=jsonObject.getString("type");
             Log.e(TAG,uid+"  "+url);
-            url="http://172.16.86.194:8080/upload"+url;
+            Log.w(TAG,uid+"  "+url);
+//            url="http://172.16.86.194:8080/upload"+url;
+
 
             String []urls=url.split("#");
             List<String> urlList = new ArrayList<String>();
             for(int j=0;j<urls.length;j++){
-                urlList.add(urls[i]);
+                urlList.add("http://172.16.86.194:8080/upload"+urls[j]);
             }
 
             NineGridItem item=new NineGridItem(uid,time,urlList,text,location,type);

@@ -36,7 +36,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <com.example.test.pager.PhotoViewPager
+    <com.example.projectthree.pager.PhotoViewPager
         android:id="@+id/images_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

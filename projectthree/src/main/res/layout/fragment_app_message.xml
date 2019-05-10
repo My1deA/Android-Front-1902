@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/btn_blue"
-        app:navigationIcon="@drawable/back">
+        app:navigationIcon="@drawable/back"
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,6 +27,20 @@
                 android:textSize="17sp" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text="上传信息"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/btn_upload"

@@ -9,11 +9,9 @@
     </style>
 
     <style name="AppCompatTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
-
-    <!--<style name="AppCompatTheme" parent="AppTheme">-->
-    <!--</style>-->
-
 
     <style name="TabButton">
         <item name="android:layout_width">match_parent</item>

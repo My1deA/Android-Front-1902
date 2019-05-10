@@ -1,6 +1,5 @@
-package com.example.projectthree.fragment;
+package com.example.projectthree.useless;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,14 +15,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bumptech.glide.Glide;
 import com.example.projectthree.R;
-import com.example.projectthree.adapter.LinenarDynamicAdapter;
 import com.example.projectthree.bean.Picinfo;
 
 import java.util.ArrayList;
@@ -31,15 +27,12 @@ import java.util.List;
 
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectthree.widget.RecyclerExtras.OnItemClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemDeleteClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemLongClickListener;
 import com.example.projectthree.widget.SpacesItemDecoration;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

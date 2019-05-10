@@ -2,10 +2,13 @@ package com.example.projectthree;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -46,6 +49,8 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
         tv_result=findViewById(R.id.tv_result);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_register).setOnClickListener(this);
+
+
     }
 
     @Override
@@ -53,24 +58,25 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
         if (v.getId()==R.id.btn_login){
             username=et_username.getText().toString().trim();
             password=et_password.getText().toString().trim();
-            if(username.equals("1")){
-                MainApplication.getInstance().UserinfoMap.put("username",username);
-                MainApplication.getInstance().UserinfoMap.put("password",password);
-
-
-                Intent intent=new Intent(LoginServletActivity.this,AppMainActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putString("username",username);
-                bundle.putString("password",password);
-//                    Toast.makeText(LoginServletActivity.this,username+" "+password,Toast.LENGTH_SHORT).show();
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }else {
+//            if(username.equals("1")){
+//                MainApplication.getInstance().UserinfoMap.put("username",username);
+//                MainApplication.getInstance().UserinfoMap.put("password",password);
+//
+//
+//                Intent intent=new Intent(LoginServletActivity.this,AppMainActivity.class);
+//                Bundle bundle=new Bundle();
+//                bundle.putString("username",username);
+//                bundle.putString("password",password);
+////                    Toast.makeText(LoginServletActivity.this,username+" "+password,Toast.LENGTH_SHORT).show();
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }else{
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+
                             HttpClient httpClient = new DefaultHttpClient();
                             HttpPost httpPost = new HttpPost(url);
                             List<NameValuePair> list = new ArrayList<NameValuePair>();
@@ -98,7 +104,7 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
                         }
                     }
                 }).start();
-            }
+//            }
 
         }else if(v.getId()==R.id.btn_register){
             Intent intent=new Intent(this,RegisterServletActivity.class);
