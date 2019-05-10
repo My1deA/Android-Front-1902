@@ -24,6 +24,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.example.projectthree.R;
 import com.example.projectthree.adapter.LinenarDynamicAdapter;
+import com.example.projectthree.adapter.NineGridAdapter;
+import com.example.projectthree.bean.NineGridItem;
 import com.example.projectthree.bean.Picinfo;
 
 import java.util.ArrayList;
@@ -55,14 +57,16 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     private static final String TAG="HomeFragment";
     protected View mView;
     protected Context mContext;
-    private SwipeRefreshLayout srl_dynamic;//转圈圈
-    private RecyclerView rv_dynamic; //循环视图
-    private LinenarDynamicAdapter adapter;//适配器
     private ArrayList<Picinfo> PublicArray=new ArrayList<Picinfo>();//数据链表
     private ArrayList<Picinfo> AllArray=new ArrayList<Picinfo>();//数据链表
     private static int download=1;
     private final static String Url="http://172.16.86.194:8080/MyWebTest/downloadServlet";
-//    private TextView tv_result;
+
+    private SwipeRefreshLayout srl_dynamic;//转圈圈
+    private RecyclerView rv_dynamic; //循环视图
+    private RecyclerView.LayoutManager rv_manager;//布局管理器
+    private NineGridAdapter adapter;//适配器
+    private ArrayList<NineGridItem> mList=new ArrayList<NineGridItem>();
 
 
     @Nullable
@@ -75,35 +79,20 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
         srl_dynamic.setColorSchemeResources(
                 R.color.red, R.color.orange, R.color.green, R.color.blue);
         rv_dynamic=mView.findViewById(R.id.rv_dynamic);
-//        mView.findViewById(R.id.btn_start).setOnClickListener(this);
-//        tv_result=mView.findViewById(R.id.tv_result);
+
         GetfromMysql();
 
         return mView;
     }
 
     private void initRecyclerDynamic() {
-        rv_dynamic=mView.findViewById(R.id.rv_dynamic);
 
-        // 创建一个垂直方向的线性布局管理器
-        LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayout.VERTICAL, false);
-        // 设置循环视图的布局管理器
-        rv_dynamic.setLayoutManager(manager);
+        rv_manager = new LinearLayoutManager(mContext);
+        rv_dynamic.setLayoutManager(rv_manager);
 
-        adapter = new LinenarDynamicAdapter(mContext, PublicArray);
-        // 设置线性列表的点击监听器
-        adapter.setOnItemClickListener(this);
-        // 设置线性列表的长按监听器
-        adapter.setOnItemLongClickListener(this);
-        // 设置线性列表的删除按钮监听器
-        adapter.setOnItemDeleteClickListener(this);
-        // 给rv_dynamic设置公众号线性适配器
+        adapter = new NineGridAdapter(mContext);
+        adapter.setList(mList);
         rv_dynamic.setAdapter(adapter);
-        // 设置rv_dynamic的默认动画效果
-        rv_dynamic.setItemAnimator(new DefaultItemAnimator());
-        // 给rv_dynamic添加列表项之间的空白装饰
-        rv_dynamic.addItemDecoration(new SpacesItemDecoration(1));
-
 
     }
 
@@ -117,48 +106,11 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     private Runnable mRefresh = new Runnable() {
         @Override
         public void run() {
-            // 结束下拉刷新布局的刷新动作
-            srl_dynamic.setRefreshing(false);
-            int position = (int) (Math.random() * 100 % AllArray.size());
-            Picinfo old_item = AllArray.get(position);
-            Picinfo new_item = new Picinfo(old_item.uid,
-                    old_item.desc, old_item.location);
-            PublicArray.add(0, new_item);
-            // 通知适配器列表在第一项插入数据
-            adapter.notifyItemInserted(0);
-            // 让循环视图滚动到第一项所在的位置
-            rv_dynamic.scrollToPosition(0);
-            // 当循环视图的列表项已经占满整个屏幕时，再往顶部添加一条新记录，
-            // 感觉屏幕没有发生变化，也没看到插入动画。
-            // 此时就要调用scrollToPosition(0)方法，表示滚动到第一条记录。
+            Toast.makeText(mContext,"没有更多消息",Toast.LENGTH_SHORT).show();
         }
     };
 
-    @Override
-    public void onItemClick(View view, int position) {
-        String desc = String.format("您点击了第%d项，标题是%s", position + 1,
-                PublicArray.get(position).desc);
-        Toast.makeText(getActivity(), desc, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onItemLongClick(View view, int position) {
-        Picinfo item=PublicArray.get(position);
-        item.bPressed=!item.bPressed;
-        PublicArray.set(position,item);
-        adapter.notifyItemChanged(position);
-    }
-
-    @Override
-    public void onItemDeleteClick(View view, int position) {
-        PublicArray.remove(position);
-        adapter.notifyItemRemoved(position);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 
     private void GetfromMysql(){
         new Thread(new Runnable() {
@@ -199,7 +151,6 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
         @Override
         public void handleMessage(Message msg) {
             if(msg.what==download){
-//                tv_result.setText((String) msg.obj);
                 initPublicArray((String) msg.obj);
                 initRecyclerDynamic(); // 初始化动态线性布局的循环视图
             }
@@ -220,13 +171,51 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
             String type=jsonObject.getString("type");
             Log.e(TAG,uid+"  "+url);
             url="http://172.16.86.194:8080/upload"+url;
-            Picinfo picinfo=new Picinfo(uid,text,url,location,false);
-            PublicArray.add(picinfo);
-            AllArray.add(picinfo);
+
+            String []urls=url.split("#");
+            List<String> urlList = new ArrayList<String>();
+            for(int j=0;j<urls.length;j++){
+                urlList.add(urls[i]);
+            }
+
+            NineGridItem item=new NineGridItem(uid,time,urlList,text,location,type);
+            mList.add(item);
+
+
+//            Picinfo picinfo=new Picinfo(uid,text,url,location,false);
+//            PublicArray.add(picinfo);
+//            AllArray.add(picinfo);
         }
 
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        String desc = String.format("您点击了第%d项，标题是%s", position + 1,
+               mList.get(position).getText());
+        Toast.makeText(getActivity(), desc, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+
+        NineGridItem item=mList.get(position);
+        item.bPressed=!item.bPressed;
+        mList.set(position,item);
+        adapter.notifyItemChanged(position);
+
+    }
+
+    @Override
+    public void onItemDeleteClick(View view, int position) {
+        mList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }
 
 

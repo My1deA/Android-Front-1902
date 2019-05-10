@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 
 import com.example.projectthree.MyGalleryActivity;
-import com.example.projectthree.layout.NineGridLayout;
 import com.example.projectthree.util.ImageLoaderUtil;
 import com.example.projectthree.view.RatioImageView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -22,11 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * 描述：
- * 作者：HMY
- * 时间：2016/5/12
- */
 public class NineGridTestLayout extends NineGridLayout {
 
     protected static final int MAX_W_H_RATIO = 3;

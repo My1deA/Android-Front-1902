@@ -62,6 +62,8 @@
             android:supportsPictureInPicture="true" />
 
         <activity android:name=".MyGalleryActivity"/>
+        <activity android:name=".RecyclerViewExampleActivity"/>
+        <activity android:name=".SecondActivity"/>
 
     </application>
 

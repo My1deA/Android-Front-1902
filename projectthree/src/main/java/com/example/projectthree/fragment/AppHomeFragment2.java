@@ -1,5 +1,6 @@
 package com.example.projectthree.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,20 +16,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 import com.example.projectthree.R;
 import com.example.projectthree.adapter.LinenarDynamicAdapter;
 import com.example.projectthree.bean.Picinfo;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.projectthree.widget.RecyclerExtras.OnItemClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemDeleteClickListener;
 import com.example.projectthree.widget.RecyclerExtras.OnItemLongClickListener;
 import com.example.projectthree.widget.SpacesItemDecoration;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -40,34 +51,33 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AppFindFragment extends Fragment implements OnItemClickListener, OnItemLongClickListener, OnItemDeleteClickListener,OnRefreshListener{
-    private static final String TAG="FindFragment";
+public class AppHomeFragment2 extends Fragment implements View.OnClickListener,OnItemClickListener, OnItemLongClickListener, OnItemDeleteClickListener,OnRefreshListener{
+    private static final String TAG="HomeFragment2";
     protected View mView;
     protected Context mContext;
-    private SwipeRefreshLayout srl_dynamic;
-    private RecyclerView rv_dynamic; // 声明一个循环视图对象
-    private LinenarDynamicAdapter adapter;
-    private ArrayList<Picinfo> mPublicArray;
-    private ArrayList<Picinfo> mAllArray;
+    private SwipeRefreshLayout srl_dynamic;//转圈圈
+    private RecyclerView rv_dynamic; //循环视图
+    private LinenarDynamicAdapter adapter;//适配器
+    private ArrayList<Picinfo> PublicArray=new ArrayList<Picinfo>();//数据链表
+    private ArrayList<Picinfo> AllArray=new ArrayList<Picinfo>();//数据链表
     private static int download=1;
     private final static String Url="http://172.16.86.194:8080/MyWebTest/downloadServlet";
-    private ArrayList<Picinfo> PublicArray;
-    private ArrayList<Picinfo> AllArray;
+//    private TextView tv_result;
 
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext=getActivity();
-        mView=inflater.inflate(R.layout.fragment_app_find,container,false);
+        mView=inflater.inflate(R.layout.fragment_app_home,container,false);
         srl_dynamic=mView.findViewById(R.id.srl_dynamic);
         srl_dynamic.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
         srl_dynamic.setColorSchemeResources(
                 R.color.red, R.color.orange, R.color.green, R.color.blue);
-
-        initRecyclerDynamic(); // 初始化动态线性布局的循环视图
+        rv_dynamic=mView.findViewById(R.id.rv_dynamic);
+//        mView.findViewById(R.id.btn_start).setOnClickListener(this);
+//        tv_result=mView.findViewById(R.id.tv_result);
+        GetfromMysql();
 
         return mView;
     }
@@ -80,10 +90,7 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
         // 设置循环视图的布局管理器
         rv_dynamic.setLayoutManager(manager);
 
-        mAllArray = Picinfo.getDefaultList();
-        mPublicArray = Picinfo.getDefaultList();
-
-        adapter = new LinenarDynamicAdapter(mContext, mPublicArray);
+        adapter = new LinenarDynamicAdapter(mContext, PublicArray);
         // 设置线性列表的点击监听器
         adapter.setOnItemClickListener(this);
         // 设置线性列表的长按监听器
@@ -97,15 +104,14 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
         // 给rv_dynamic添加列表项之间的空白装饰
         rv_dynamic.addItemDecoration(new SpacesItemDecoration(1));
 
+
     }
 
-
-    // 一旦在下拉刷新布局内部往下拉动页面，就触发下拉监听器的onRefresh方法
+    @Override
     public void onRefresh() {
         // 延迟若干秒后启动刷新任务
         mHandler.postDelayed(mRefresh, 2000);
     }
-
     private Handler mHandler = new Handler(); // 声明一个处理器对象
     // 定义一个刷新任务
     private Runnable mRefresh = new Runnable() {
@@ -113,11 +119,11 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
         public void run() {
             // 结束下拉刷新布局的刷新动作
             srl_dynamic.setRefreshing(false);
-            int position = (int) (Math.random() * 100 % mAllArray.size());
-            Picinfo old_item = mAllArray.get(position);
+            int position = (int) (Math.random() * 100 % AllArray.size());
+            Picinfo old_item = AllArray.get(position);
             Picinfo new_item = new Picinfo(old_item.uid,
                     old_item.desc, old_item.location);
-            mPublicArray.add(0, new_item);
+            PublicArray.add(0, new_item);
             // 通知适配器列表在第一项插入数据
             adapter.notifyItemInserted(0);
             // 让循环视图滚动到第一项所在的位置
@@ -131,22 +137,27 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
     @Override
     public void onItemClick(View view, int position) {
         String desc = String.format("您点击了第%d项，标题是%s", position + 1,
-                mPublicArray.get(position).desc);
+                PublicArray.get(position).desc);
         Toast.makeText(getActivity(), desc, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
-        Picinfo item=mPublicArray.get(position);
+        Picinfo item=PublicArray.get(position);
         item.bPressed=!item.bPressed;
-        mPublicArray.set(position,item);
+        PublicArray.set(position,item);
         adapter.notifyItemChanged(position);
     }
 
     @Override
     public void onItemDeleteClick(View view, int position) {
-        mPublicArray.remove(position);
+        PublicArray.remove(position);
         adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     private void GetfromMysql(){
@@ -215,4 +226,50 @@ public class AppFindFragment extends Fragment implements OnItemClickListener, On
         }
 
     }
+
 }
+
+
+//if(v.getId()==R.id.btn_start){
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try{
+//                        //客户端
+//                        HttpClient httpClient=new DefaultHttpClient();
+//                        //post方式
+//                        HttpPost httpPost=new HttpPost(Url);
+//                        //传输数据
+//                        List<NameValuePair> list=new ArrayList<NameValuePair>();
+//                        list.add(new BasicNameValuePair("download","download"));
+//                        list.add(new BasicNameValuePair("count","count"));
+//
+//                        UrlEncodedFormEntity entity=new UrlEncodedFormEntity(list,"utf-8");
+//                        httpPost.setEntity(entity);
+//
+//                        //回应
+//                        HttpResponse httpResponse=httpClient.execute(httpPost);
+//                        if(httpResponse.getStatusLine().getStatusCode()==200){
+//
+//                            HttpEntity entity1=httpResponse.getEntity();
+//                            String jstr= EntityUtils.toString(entity1,"utf-8");
+//                            Message message=new Message();
+//                            message.what=download;
+//                            message.obj=jstr;
+//                            messageHander.sendMessage(message);
+//                        }
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).start();}
+
+
+//compile 'com.github.bumptech.glide:glide:4.0.0'
+//
+//    private ImageView iv_icon1;
+//    private String url="http://172.16.86.194:8080/MyWebTest/123/service_2.jpg";
+//        iv_icon1=mView.findViewById(R.id.iv_icon1);
+////        url="https://pic.cnblogs.com/avatar/1142647/20170416093225.png";
+//        url="https://b-ssl.duitang.com/uploads/item/201901/28/20190128152613_hkhni.jpg";
+//        Glide.with(mContext).load(url).into(iv_icon1);

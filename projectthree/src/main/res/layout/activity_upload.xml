@@ -1,44 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <Button
-        android:id="@+id/btn_upload"
+        android:id="@+id/Upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="上传"
-        android:textSize="17sp"
-        android:textColor="@color/black" />
+        android:text="上传" />
 
-    <Button
-        android:id="@+id/btn_confrim"
+    <TextView
+        android:id="@+id/textShow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="确认"
-        android:textSize="17sp"
-        android:textColor="@color/black" />
+        android:scrollbars="vertical"
+        android:minLines="6"
+        android:maxLines="8" />
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tv_filename"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <ProgressBar
-        android:id="@+id/pb_horizontal"
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:progressBarStyleHorizontal"/>
+        style="?android:progressBarStyleHorizontal"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:fadingEdge="vertical">
+        <GridLayout
+            android:id="@+id/gridlayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:scrollbars="vertical">
 
+        </GridLayout>
+    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/rv"
+        />
 
-    <ImageView
-        android:id="@+id/iv_fileImage"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </LinearLayout>
