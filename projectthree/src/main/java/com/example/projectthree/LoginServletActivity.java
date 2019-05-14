@@ -127,7 +127,7 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
                     MainApplication.getInstance().UserinfoMap.put("password",password);
 
 
-                    Intent intent=new Intent(LoginServletActivity.this,AppMainActivity.class);
+                    Intent intent=new Intent(LoginServletActivity.this,AppMainActivity2.class);
                     Bundle bundle=new Bundle();
                     bundle.putString("username",username);
                     bundle.putString("password",password);

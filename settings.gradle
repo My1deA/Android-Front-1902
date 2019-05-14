@@ -1,1 +1,2 @@
-include ':app', ':network', ':okhttputils', ':sample-okhttp2', ':filedialog', ':projectthree'
+include ':app', ':network', ':okhttputils', ':filedialog', ':projectthree', ':sample-okhttp3'
+project(':sample-okhttp3').projectDir = new File('sample-okhttp2')

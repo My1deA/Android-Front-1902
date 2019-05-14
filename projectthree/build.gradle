@@ -34,7 +34,7 @@ android {
         abortOnError false
     }
 
-    useLibrary 'org.apache.http.legacy'
+//    useLibrary 'org.apache.http.legacy'
 }
 allprojects {
     repositories {
@@ -53,6 +53,10 @@ dependencies {
 
     implementation files('libs/httpclient-4.2.5.jar')
     implementation project(':okhttputils')
+//    implementation files('libs/okhttputils-2_6_2.jar')
+//    implementation files('libs/okhttp-3.4.1.jar')
+//    implementation files('libs/okio-1.9.0.jar')
+
     implementation 'com.google.code.gson:gson:2.3.1'
     implementation 'com.alibaba:fastjson:1.1.54.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.1'
@@ -75,7 +79,12 @@ dependencies {
     // https://mvnrepository.com/artifact/com.nostra13.universalimageloader/universal-image-loader
     implementation group: 'com.nostra13.universalimageloader', name: 'universal-image-loader', version: '1.9.3'
 
-//    implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.2'
-    
+
+
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/component_common_sdk_1.0.0.jar')
+    implementation files('libs/IndoorscapeAlbumPlugin.jar')
+    implementation 'com.github.hotchemi:permissionsdispatcher:2.2.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
 
 }
