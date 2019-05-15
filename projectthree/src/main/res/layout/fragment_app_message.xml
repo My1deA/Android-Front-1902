@@ -43,13 +43,27 @@
         android:gravity="center"/>
 
     <Button
-        android:id="@+id/btn_upload"
+        android:id="@+id/btn_picupload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         android:textColor="@color/black"
-        android:text="上传"/>
+        android:text="上传图片"/>
 
+    <Button
+        android:id="@+id/btn_vedioupload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:text="上传视频"/>
+
+    <TextView
+        android:id="@+id/tv_cityloc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@color/black"/>
 
 
 </LinearLayout>

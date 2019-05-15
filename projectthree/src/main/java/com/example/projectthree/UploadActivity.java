@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -93,6 +94,12 @@ public class UploadActivity extends Activity implements View.OnClickListener
     int index=0;
 
 
+    private EditText et_text;
+    private TextView tv_cityloc;
+    private String type="图片";
+    private String username;
+
+
 
 
 
@@ -126,6 +133,14 @@ public class UploadActivity extends Activity implements View.OnClickListener
         gridlayout=(GridLayout)findViewById(R.id.gridlayout);
         Upload.setOnClickListener(this);
         findViewById(R.id.btn_ok).setOnClickListener(this);
+
+        et_text=findViewById(R.id.et_text);
+        tv_cityloc=findViewById(R.id.tv_cityloc);
+
+        username=MainApplication.getInstance().UserinfoMap.get("username");
+        Bundle bundle=getIntent().getExtras();
+        tv_cityloc.setText(bundle.getString("city"));
+
         mContext=this;
         initView();
 
@@ -226,18 +241,6 @@ public class UploadActivity extends Activity implements View.OnClickListener
     public void multiFileUpload() {
         String mBaseUrl="http://172.16.86.49:8001/upload";
          mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
-        //String str=textShow.getText().toString();
-        //String name=str.substring(str.lastIndexOf("/")+1);
-        //File file=new File(str);
-        //Log.e(TAG,str);
-        //File file = new File(Environment.getExternalStorageDirectory(), "snow.jpg");
-        //File file2 = new File(Environment.getExternalStorageDirectory(), "钢琴.txt");
-        //Log.e(TAG,Environment.getExternalStorageDirectory()+"/钢琴.txt");
-//        if (!file.exists()||!file.exists())
-//        {
-//            return;
-//        }
-
 
 
         String Allurl="";
@@ -247,11 +250,11 @@ public class UploadActivity extends Activity implements View.OnClickListener
         }
 
         Map<String, String> params = new HashMap<>();
-        params.put("uid","1");
+        params.put("uid",username);
         params.put("time", DateUtil.getNowDateTime());
-        params.put("location","广州");
-        params.put("type","图片");
-        params.put("text","很好吃");
+        params.put("location",tv_cityloc.getText().toString().trim());
+        params.put("type",type);
+        params.put("text",et_text.getText().toString().trim());
 //        params.put("Allurl",Allurl);
 
         String url = mBaseUrl;

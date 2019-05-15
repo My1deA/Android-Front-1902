@@ -89,6 +89,7 @@
         <activity android:name=".RecyclerViewExampleActivity" android:theme="@style/AppCompatTheme"/>
         <activity android:name=".SecondActivity" android:theme="@style/AppCompatTheme"/>
         <activity android:name=".AppMainActivity2" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".UploadVideoActivity" android:theme="@style/AppCompatTheme"/>
 
     </application>
 
