@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text="上传视频"
+        android:background="@color/btn_blue"
+        android:gravity="center"/>
+
+
+    <EditText
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:id="@+id/et_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:minLines="6"
+        android:maxLines="8"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:gravity="top"
+        android:textCursorDrawable="@drawable/text_cursor"
+        android:background="@drawable/editext_seletor"
+        android:hint="请输入视频描述"
+        android:textColorHint="@color/btn_grey"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp" />
+
+    <FrameLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/fl_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"/>
+        <ImageView
+            android:id="@+id/iv_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pause"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/location"/>
+        <TextView
+            android:id="@+id/tv_cityloc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="地点"/>
+    </LinearLayout>
+
+
+    <Button
+
+        android:id="@+id/btn_addvideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加视频"/>
+    <Button
+        android:id="@+id/btn_confrim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认上传"/>
+
+    <TextView
+        android:id="@+id/textShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:progressBarStyleHorizontal" />
+
+</LinearLayout>
