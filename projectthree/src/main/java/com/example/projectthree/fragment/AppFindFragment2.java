@@ -151,7 +151,7 @@ public class AppFindFragment2 extends Fragment {
             }
 
 
-            tv_loccity.setText(location.getCity());
+            tv_loccity.setText(location.getCity()+"  "+location.getDistrict()+"  "+location.getStreet());
         }
     }
 

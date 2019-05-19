@@ -34,7 +34,7 @@ android {
         abortOnError false
     }
 
-//    useLibrary 'org.apache.http.legacy'
+    useLibrary 'org.apache.http.legacy'
 }
 allprojects {
     repositories {

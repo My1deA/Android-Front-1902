@@ -88,7 +88,8 @@
         android:id="@+id/btn_confrim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="确认上传"/>
+        android:text="确认上传"
+        android:background="@color/login_blue"/>
 
     <TextView
         android:id="@+id/textShow"

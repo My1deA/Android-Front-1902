@@ -110,6 +110,10 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
         @Override
         public void run() {
             srl_dynamic.setRefreshing(false);
+
+            mList=new ArrayList<NineGridItem>();
+            GetfromMysql();
+
             Toast.makeText(mContext,"没有更多消息",Toast.LENGTH_SHORT).show();
         }
     };
@@ -128,7 +132,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
                     //传输数据
                     List<NameValuePair> list=new ArrayList<NameValuePair>();
                     list.add(new BasicNameValuePair("download","download"));
-                    list.add(new BasicNameValuePair("count",String.valueOf(conunt)));
+                    list.add(new BasicNameValuePair("count",String.valueOf(conunt++)));
 
                     UrlEncodedFormEntity entity=new UrlEncodedFormEntity(list,"utf-8");
                     httpPost.setEntity(entity);
