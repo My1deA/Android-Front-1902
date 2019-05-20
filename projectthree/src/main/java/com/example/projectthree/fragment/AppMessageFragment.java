@@ -20,6 +20,12 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 import com.example.projectthree.R;
 import com.example.projectthree.UploadActivity;
 import com.example.projectthree.UploadVideoActivity;
@@ -30,13 +36,17 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
     protected View mView;//声明一个视图对象
     protected Context mContext;//声明一个上下文对象
     private String[] Permissionrequest={Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private TextView tv_cityloc;
+    private MapView mapView;//地图
+    private BaiduMap baiduMap;
+    private TextView tv_loccity;
 
-
+    //防止每次定位都重新设置中心点和marker
     private boolean isFirstLocation = true;
+    //初始化LocationClient定位类
     private LocationClient mLocationClient = null;
     //BDAbstractLocationListener为7.2版本新增的Abstract类型的监听接口，原有BDLocationListener接口
-    private BDLocationListener myListener = new AppMessageFragment.MyLocationListener();
+    private BDLocationListener myListener = new MyLocationListener();
+    //经纬度
     private double lat;
     private double lon;
 
@@ -49,19 +59,70 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
 
         mView.findViewById(R.id.btn_picupload).setOnClickListener(this);
         mView.findViewById(R.id.btn_vedioupload).setOnClickListener(this);
-        tv_cityloc=mView.findViewById(R.id.tv_cityloc);
 
+        mapView=mView.findViewById(R.id.mv_mapview);
+        baiduMap=mapView.getMap();
+        tv_loccity=mView.findViewById(R.id.tv_loccity);
+        initMap();
 
-        initLocation();
 
         return mView;
     }
 
-    private void initLocation() {
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.btn_picupload){
+             Intent intent=new Intent(mContext, UploadActivity.class);
+             Bundle bundle=new Bundle();
+             bundle.putString("city",tv_loccity.getText().toString().trim());
+             intent.putExtras(bundle);
+             startActivity(intent);
+//            if (PermissionUtil.checkMultiPermission((Activity) mContext, Permissionrequest,R.id.btn_picupload % 4096)){
+//                PermissionUtil.goActivity(mContext, UploadActivity.class);
+//            }
+
+        }
+
+        if(v.getId()==R.id.btn_vedioupload){
+            Intent intent=new Intent(mContext, UploadVideoActivity.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("city",tv_loccity.getText().toString().trim());
+            intent.putExtras(bundle);
+            startActivity(intent);
+//            if (PermissionUtil.checkMultiPermission((Activity) mContext, Permissionrequest,R.id.btn_vedioupload % 4096)){
+//                PermissionUtil.goActivity(mContext, UploadVideoActivity.class);
+//            }
+        }
+    }
+
+
+
+    private void initMap() {
+        //普通地图
+        baiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+        //卫星地图
+        //baiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
+        //空白地图, 基础地图瓦片将不会被渲染。在地图类型中设置为NONE，将不会使用流量下载基础地图瓦片图层。使用场景：与瓦片图层一起使用，节省流量，提升自定义瓦片图下载速度。
+        //baiduMap.setMapType(BaiduMap.MAP_TYPE_NONE);
+        //开启交通图
+        baiduMap.setTrafficEnabled(true);
+        //关闭缩放按钮
+        mapView.showZoomControls(false);
+
+
+        // 开启定位图层
+        baiduMap.setMyLocationEnabled(true);
+        //声明LocationClient类
         mLocationClient = new LocationClient(mContext);
         //注册监听函数
         mLocationClient.registerLocationListener(myListener);
+        initLocation();
+        //开始定位
+        mLocationClient.start();
+    }
 
+    private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -87,39 +148,12 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
         //可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
         option.setEnableSimulateGps(false);
         mLocationClient.setLocOption(option);
-
-        //开始定位
-        mLocationClient.start();
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.btn_picupload){
-             Intent intent=new Intent(mContext, UploadActivity.class);
-             Bundle bundle=new Bundle();
-             bundle.putString("city",tv_cityloc.getText().toString().trim());
-             intent.putExtras(bundle);
-             startActivity(intent);
-//            if (PermissionUtil.checkMultiPermission((Activity) mContext, Permissionrequest,R.id.btn_picupload % 4096)){
-//                PermissionUtil.goActivity(mContext, UploadActivity.class);
-//            }
-
-        }
-
-        if(v.getId()==R.id.btn_vedioupload){
-            Intent intent=new Intent(mContext, UploadVideoActivity.class);
-            Bundle bundle=new Bundle();
-            bundle.putString("city",tv_cityloc.getText().toString().trim());
-            intent.putExtras(bundle);
-            startActivity(intent);
-//            if (PermissionUtil.checkMultiPermission((Activity) mContext, Permissionrequest,R.id.btn_vedioupload % 4096)){
-//                PermissionUtil.goActivity(mContext, UploadVideoActivity.class);
-//            }
-        }
-    }
-
-
-
+    /**
+     * 实现定位监听 位置一旦有所改变就会调用这个方法
+     * 可以在这个方法里面获取到定位之后获取到的一系列数据
+     */
     public class MyLocationListener implements BDLocationListener {
 
         @Override
@@ -153,14 +187,46 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
             if (isFirstLocation) {
                 isFirstLocation = false;
                 //设置并显示中心点
-//                setPosition2Center(baiduMap, location, true);
+                setPosition2Center(baiduMap, location, true);
             }
 
-            tv_cityloc.setText(location.getCity());
+
+            tv_loccity.setText(location.getCity()+"  "+location.getDistrict()+"  "+location.getStreet());
         }
     }
 
+    /**
+     * 设置中心点和添加marker
+     *
+     * @param map
+     * @param bdLocation
+     * @param isShowLoc
+     */
+    public void setPosition2Center(BaiduMap map, BDLocation bdLocation, Boolean isShowLoc) {
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(bdLocation.getRadius())
+                .direction(bdLocation.getRadius()).latitude(bdLocation.getLatitude())
+                .longitude(bdLocation.getLongitude()).build();
+        map.setMyLocationData(locData);
 
+        if (isShowLoc) {
+            LatLng ll = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
+            MapStatus.Builder builder = new MapStatus.Builder();
+            builder.target(ll).zoom(18.0f);
+            map.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+        }
+    }
+
+    @Override
+    public void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+    @Override
+    public void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -168,6 +234,10 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
         // 退出时销毁定位
         mLocationClient.unRegisterLocationListener(myListener);
         mLocationClient.stop();
+        // 关闭定位图层
+        baiduMap.setMyLocationEnabled(false);
+        mapView.onDestroy();
+        mapView = null;
     }
 
 

@@ -87,6 +87,14 @@
         android:textColor="@color/black"
         android:text="修改信息"/>
 
+    <Button
+        android:id="@+id/btn_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:text="show"/>
+
 
 
 </LinearLayout>

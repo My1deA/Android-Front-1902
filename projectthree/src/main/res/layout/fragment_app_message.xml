@@ -59,11 +59,15 @@
         android:text="上传视频"/>
 
     <TextView
-        android:id="@+id/tv_cityloc"
+        android:id="@+id/tv_loccity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         android:textColor="@color/black"/>
 
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mv_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.baidu.mapapi.map.MapView>
 
 </LinearLayout>

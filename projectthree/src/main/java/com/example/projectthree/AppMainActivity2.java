@@ -19,8 +19,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.projectthree.fragment.AppFindFragment;
-import com.example.projectthree.fragment.AppFindFragment2;
+import com.example.projectthree.fragment.AppFindFragment3;
 import com.example.projectthree.fragment.AppHomeFragment;
 import com.example.projectthree.fragment.AppMeFragment;
 import com.example.projectthree.fragment.AppMessageFragment;
@@ -61,7 +60,7 @@ public class AppMainActivity2 extends AppCompatActivity {
 
         //放置fragment
         tabHost.addTab(getTabView(R.string.home,R.drawable.tab_home_selector), AppHomeFragment.class,bundle);
-        tabHost.addTab(getTabView(R.string.find,R.drawable.tab_find_selector), AppFindFragment2.class,bundle);
+        tabHost.addTab(getTabView(R.string.find,R.drawable.tab_find_selector), AppFindFragment3.class,bundle);
         tabHost.addTab(getTabView(R.string.message,R.drawable.tab_message_selector), AppMessageFragment.class,bundle);
         tabHost.addTab(getTabView(R.string.me,R.drawable.tab_me_selector), AppMeFragment.class,bundle);
 

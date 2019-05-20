@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
-import com.example.projectthree.fragment.AppFindFragment;
+import com.example.projectthree.useless.AppFindFragment;
 import com.example.projectthree.fragment.AppHomeFragment;
 import com.example.projectthree.fragment.AppMeFragment;
 import com.example.projectthree.fragment.AppMessageFragment;

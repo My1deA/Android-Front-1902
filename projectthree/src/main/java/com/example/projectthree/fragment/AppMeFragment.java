@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,10 +20,24 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.projectthree.MainApplication;
 import com.example.projectthree.R;
-import com.example.projectthree.UploadActivity;
-import com.example.projectthree.util.PermissionUtil;
+
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppMeFragment extends Fragment implements View.OnClickListener {
 
@@ -30,6 +46,8 @@ public class AppMeFragment extends Fragment implements View.OnClickListener {
     protected Context mContext;//上下文
     private TextView tv_password;
     private TextView tv_username;
+    private static String url="http://172.16.86.194:8080/MyWebTest/statsServlet";
+    private int check=1;
 
     private String[] Permissionrequest={Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -47,7 +65,6 @@ public class AppMeFragment extends Fragment implements View.OnClickListener {
         tv_password.setText(getArguments().getString("password"));
 
 
-
         return mView;
     }
 
@@ -56,9 +73,54 @@ public class AppMeFragment extends Fragment implements View.OnClickListener {
         if(v.getId()==R.id.btn_modify){
             tv_username.setText(MainApplication.getInstance().UserinfoMap.get("password"));
             tv_password.setText(MainApplication.getInstance().UserinfoMap.get("username"));
+        }else if(v.getId()==R.id.btn_check){
+            getFromMysql();
         }
 
     }
+
+    private void getFromMysql(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try{
+                    HttpClient httpClient=new DefaultHttpClient();
+                    HttpPost httpPost=new HttpPost(url);
+                    ArrayList<NameValuePair> list=new ArrayList<NameValuePair>();
+                    list.add(new BasicNameValuePair("stats","stats"));
+
+                    final UrlEncodedFormEntity entity=new UrlEncodedFormEntity(list,"utf-8");
+                    httpPost.setEntity(entity);
+
+                    HttpResponse httpResponse=httpClient.execute(httpPost);
+                    if(httpResponse.getStatusLine().getStatusCode()==200){
+                        HttpEntity entity1=httpResponse.getEntity();
+                        String row = EntityUtils.toString(entity1, "utf-8");
+                        Message message=new Message();
+                        message.what=check;
+                        message.obj=row;
+                        mHandler.sendMessage(message);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what==check){
+                String jsonStr= (String) msg.obj;
+                JSONObject jsonObject= JSON.parseObject(jsonStr);
+                Toast.makeText(mContext,"Pic sum:"+jsonObject.getString("picsum")+
+                        "   Video sum:"+jsonObject.getString("videosum"),Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
 }
 
