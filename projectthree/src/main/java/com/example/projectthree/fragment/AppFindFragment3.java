@@ -65,7 +65,7 @@ public class AppFindFragment3 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.et_username){
+        if(v.getId()==R.id.btn_query){
             GetfromMysql();
         }
     }

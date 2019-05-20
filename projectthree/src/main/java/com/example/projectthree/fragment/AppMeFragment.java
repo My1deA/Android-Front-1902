@@ -58,9 +58,11 @@ public class AppMeFragment extends Fragment implements View.OnClickListener {
         mView=inflater.inflate(R.layout.fragment_app_me,container,false);
 
         mView.findViewById(R.id.btn_modify).setOnClickListener(this);
+        mView.findViewById(R.id.btn_query).setOnClickListener(this);
+
+
         tv_password=mView.findViewById(R.id.tv_password);
         tv_username=mView.findViewById(R.id.tv_username);
-
         tv_username.setText(getArguments().getString("username"));
         tv_password.setText(getArguments().getString("password"));
 
