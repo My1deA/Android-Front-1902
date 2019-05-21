@@ -44,7 +44,7 @@ public class UploadVideoActivity extends AppMainActivity implements View.OnClick
     private TextView textShow;
 
     private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
-    //private static String mBaseUrl="http://172.17.178.14:8080/MyWebTest/loginServlet";
+//    private static String mBaseUrl="http://192.168.137.1:8080/MyWebTest/loginServlet";
 
     private String type="视频";
     private String username;

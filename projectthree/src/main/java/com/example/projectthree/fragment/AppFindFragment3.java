@@ -46,7 +46,7 @@ public class AppFindFragment3 extends Fragment implements View.OnClickListener {
     protected Context mContext;
 
     private final static String Url="http://172.16.86.194:8080/MyWebTest/queryServlet";
-    //private final static String Url="http://172.17.178.14:8080/MyWebTest/queryServlet";
+//    private final static String Url="http://192.168.137.1:8080/MyWebTest/queryServlet";
 
     private EditText et_username;
     private RecyclerView rv_dynamic; //循环视图

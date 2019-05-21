@@ -46,8 +46,9 @@ public class AppMeFragment extends Fragment implements View.OnClickListener {
     protected Context mContext;//上下文
     private TextView tv_password;
     private TextView tv_username;
+
     private static String url="http://172.16.86.194:8080/MyWebTest/statsServlet";
-    //private static String url="http://172.17.178.14:8080/MyWebTest/statsServlet";
+//    private static String url="http://192.168.137.1:8080/MyWebTest/statsServlet";
 
     private int check=1;
 

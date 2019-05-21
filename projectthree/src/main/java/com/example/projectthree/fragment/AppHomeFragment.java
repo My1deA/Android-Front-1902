@@ -55,8 +55,11 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     private ArrayList<Picinfo> PublicArray=new ArrayList<Picinfo>();//数据链表
     private ArrayList<Picinfo> AllArray=new ArrayList<Picinfo>();//数据链表
     private static int download=1;
+
     private final static String Url="http://172.16.86.194:8080/MyWebTest/downloadServlet";
-    //private final static String Url="http://172.17.178.14:8080/MyWebTest/downloadServlet";
+    private final static String Url2="http://172.16.86.194:8080/upload";
+//    private final static String Url="http://192.168.137.1:8080/MyWebTest/downloadServlet";
+//    private final static String Url2="http://192.168.137.1:8080/upload";
 
     private SwipeRefreshLayout srl_dynamic;//转圈圈
     private RecyclerView rv_dynamic; //循环视图
@@ -187,7 +190,8 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
             String []urls=url.split("#");
             List<String> urlList = new ArrayList<String>();
             for(int j=0;j<urls.length;j++){
-                urlList.add("http://172.16.86.194:8080/upload"+urls[j]);
+//                urlList.add("http://172.16.86.194:8080/upload"+urls[j]);
+                urlList.add(Url2+urls[j]);
             }
 
             NineGridItem item=new NineGridItem(uid,time,urlList,text,location,type);
