@@ -56,6 +56,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
     private ArrayList<Picinfo> AllArray=new ArrayList<Picinfo>();//数据链表
     private static int download=1;
     private final static String Url="http://172.16.86.194:8080/MyWebTest/downloadServlet";
+    //private final static String Url="http://172.17.178.14:8080/MyWebTest/downloadServlet";
 
     private SwipeRefreshLayout srl_dynamic;//转圈圈
     private RecyclerView rv_dynamic; //循环视图

@@ -99,6 +99,9 @@ public class UploadActivity extends Activity implements View.OnClickListener
     private String type="图片";
     private String username;
 
+    private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+    //private static String mBaseUrl="http://172.17.178.14:8080/MyWebTest/loginServlet";
+
 
 
 
@@ -239,8 +242,9 @@ public class UploadActivity extends Activity implements View.OnClickListener
      *
      */
     public void multiFileUpload() {
-        String mBaseUrl="http://172.16.86.49:8001/upload";
-         mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+        //String mBaseUrl="http://172.16.86.49:8001/upload";
+         //mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+
 
 
         String Allurl="";
