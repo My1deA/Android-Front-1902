@@ -26,6 +26,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LoginServletActivity extends AppCompatActivity implements View.OnClickListener {
@@ -126,6 +127,12 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
                     tv_result.setText("Login SUCC");
                     Toast.makeText(LoginServletActivity.this,"Succ",Toast.LENGTH_SHORT).show();
 
+                    MainApplication.getInstance().UserinfoMap=new HashMap<String,String>();
+//                    if(MainApplication.getInstance().UserinfoMap.containsKey("username")){
+//                        String str=MainApplication.getInstance().UserinfoMap.get("username");
+//                        str="123";
+//
+//                    }
                     MainApplication.getInstance().UserinfoMap.put("username",username);
                     MainApplication.getInstance().UserinfoMap.put("password",password);
 

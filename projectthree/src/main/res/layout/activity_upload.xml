@@ -33,7 +33,7 @@
         android:gravity="top"
         android:textCursorDrawable="@drawable/text_cursor"
         android:background="@drawable/editext_seletor"
-        android:hint="请输入视频描述"
+        android:hint="请输入图片描述"
         android:textColorHint="@color/btn_grey"
         android:inputType="textMultiLine"
         android:layout_marginTop="20dp"
