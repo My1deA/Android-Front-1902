@@ -35,8 +35,8 @@ public class LoginServletActivity extends AppCompatActivity implements View.OnCl
     private EditText et_password;
     private TextView tv_result;
 
-    private static String url="http://172.16.86.194:8080/MyWebTest/loginServlet";
-//    private static String url="http://192.168.137.1:8080/MyWebTest/loginServlet";
+//    private static String url="http://172.16.86.194:8080/MyWebTest/loginServlet";
+    private static String url="http://192.168.137.1:8080/MyWebTest/loginServlet";
 
     private final static int Login=1;
     private final static int Fail=2;

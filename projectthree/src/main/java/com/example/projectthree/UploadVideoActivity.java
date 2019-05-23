@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ import okhttp3.Call;
 import okhttp3.Request;
 import wseemann.media.FFmpegMediaMetadataRetriever;
 
-public class UploadVideoActivity extends AppMainActivity implements View.OnClickListener {
+public class UploadVideoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG="UploadVideoActivity";
     private EditText et_text;
@@ -43,8 +44,8 @@ public class UploadVideoActivity extends AppMainActivity implements View.OnClick
     private ProgressBar progressBar;
     private TextView textShow;
 
-    private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
-//    private static String mBaseUrl="http://192.168.137.1:8080/MyWebTest/loginServlet";
+//    private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+    private static String mBaseUrl="http://192.168.137.1:8080/MyWebTest/loginServlet";
 
     private String type="视频";
     private String username;

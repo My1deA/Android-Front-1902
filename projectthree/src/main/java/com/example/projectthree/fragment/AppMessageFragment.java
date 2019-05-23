@@ -70,6 +70,7 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
     }
 
 
+
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_picupload){
@@ -185,7 +186,7 @@ public class AppMessageFragment extends Fragment implements View.OnClickListener
 
             //这个判断是为了防止每次定位都重新设置中心点和marker
             if (isFirstLocation) {
-                isFirstLocation = false;
+                isFirstLocation = true;
                 //设置并显示中心点
                 setPosition2Center(baiduMap, location, true);
             }

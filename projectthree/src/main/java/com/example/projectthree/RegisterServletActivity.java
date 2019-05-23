@@ -34,8 +34,8 @@ public class RegisterServletActivity extends AppCompatActivity implements View.O
     private EditText et_password;
     private TextView tv_result;
 
-    private final static String Url="http://172.16.86.194:8080/MyWebTest/registerServlet";
-//    private final static String Url="http://192.168.137.1:8080/MyWebTest/registerServlet";
+//    private final static String Url="http://172.16.86.194:8080/MyWebTest/registerServlet";
+    private final static String Url="http://192.168.137.1:8080/MyWebTest/registerServlet";
 
     private final static int Register=1;
     private final static int Fail=2;

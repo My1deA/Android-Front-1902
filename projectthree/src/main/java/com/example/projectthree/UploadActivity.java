@@ -99,8 +99,8 @@ public class UploadActivity extends Activity implements View.OnClickListener
     private String type="图片";
     private String username;
 
-    private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
-//    private static String mBaseUrl="http://192.168.137.1:8080/MyWebTest/loginServlet";
+//    private static String mBaseUrl="http://172.16.86.194:8080/MyWebTest/uploadServlet";
+    private static String mBaseUrl="http://192.168.137.1:8080/MyWebTest/loginServlet";
 
 
 
