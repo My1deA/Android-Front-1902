@@ -118,7 +118,7 @@ public class AppHomeFragment extends Fragment implements View.OnClickListener,On
             mList=new ArrayList<NineGridItem>();
             GetfromMysql();
 
-            Toast.makeText(mContext,"没有更多消息",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,"刷新成功",Toast.LENGTH_SHORT).show();
         }
     };
 

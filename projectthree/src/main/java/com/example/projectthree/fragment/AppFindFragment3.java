@@ -46,7 +46,9 @@ public class AppFindFragment3 extends Fragment implements View.OnClickListener {
     protected Context mContext;
 
 //    private final static String Url="http://172.16.86.194:8080/MyWebTest/queryServlet";
+//    private final static String Url2="http://172.16.86.194:8080/upload";
     private final static String Url="http://192.168.137.1:8080/MyWebTest/queryServlet";
+    private final static String Url2="http://192.168.137.1:8080/upload";
 
     private EditText et_username;
     private RecyclerView rv_dynamic; //循环视图
@@ -149,7 +151,7 @@ public class AppFindFragment3 extends Fragment implements View.OnClickListener {
             String []urls=url.split("#");
             List<String> urlList = new ArrayList<String>();
             for(int j=0;j<urls.length;j++){
-                urlList.add("http://172.16.86.194:8080/upload"+urls[j]);
+                urlList.add( Url2+urls[j]);
             }
 
             NineGridItem item=new NineGridItem(uid,time,urlList,text,location,type);
