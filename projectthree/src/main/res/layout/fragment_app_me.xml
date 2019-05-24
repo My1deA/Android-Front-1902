@@ -29,6 +29,8 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
@@ -42,6 +44,14 @@
         android:text="我的信息"
         android:background="@color/btn_blue"
         android:gravity="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/food2"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -73,8 +83,6 @@
                 android:textColor="@color/uid_orange"
                 android:textSize="20sp"/>
         </LinearLayout>
-
-
     </RelativeLayout>
 
 
