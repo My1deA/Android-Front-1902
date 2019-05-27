@@ -250,7 +250,7 @@ public class UploadActivity extends Activity implements View.OnClickListener
         String Allurl="";
         for(int i=0;i<fileName.size();i++)
         {
-            Allurl+="/"+"1"+"/"+fileName.get(i)+"#";
+            Allurl+="/"+username+"/"+fileName.get(i)+"#";
         }
 
         Map<String, String> params = new HashMap<>();
