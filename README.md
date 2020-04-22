@@ -3,8 +3,17 @@
 
 #### 介绍
 手机端APP 实现图片、视频上传 定位等等功能 
-![手机端主页](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zOTAxMzI2YmNlMWMwM2JjLmpwZw?x-oss-process=image/format,png style="zoom:50%;")
+* 1. App主页
+<img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zOTAxMzI2YmNlMWMwM2JjLmpwZw?x-oss-process=image/format,png' width='375' alt='App主页'>
+
  
+ * 2. 定位
+![定位](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0wYWRiYzI3ZTJhM2I1Yjc3LmpwZw?x-oss-process=image/format,png)
+
+ * 3. 上传图片/视频
+![上传图片/视频](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png)
+
+
 
 #### 软件架构
 
