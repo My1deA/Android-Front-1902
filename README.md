@@ -14,22 +14,21 @@
  
  * 上传图片/视频
   <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
-  
 
- * 查看图片/播放视频
- <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
-  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png' width='250' alt='查看图片/播放视频'/>
-  ![查看图片/播放视频](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png)
+ * 上传图片/视频
+  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC02MWUzM2Q4OTdmYzhhNjZjLmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
 
-<br>
+
+
 #### 软件架构
- 后端开发环境：Eclipse + Mysql
+ 后端开发环境：Eclipse + Mysql + Jsp
  App端开发环境：Android Studio
 
 #### 安装教程
 
 1. 将App端项目 download/clone 到 Android Studio中
 2. 将后端项目 download/clone 到 Eclipse 中
+3. 参考博客配置Mysql表 
 3. 若使用局域网测试需要修改一下类中的上传url
 ```
 LoginServletActivity 
@@ -47,18 +46,14 @@ private final static String Url="http://本机IP地址:8080/MyWebTest/queryServl
 
 #### 使用说明
 
-1. 
-2. 
+1. 电脑运行Eclipse
+2. 手机运行App
 
 #### 参与贡献
 
-1. 
-2. 
-#### 数据库
-> 数据库的设计很简陋
+1. 设计App界面
+2. 参与设计后端架构
+3. 实现前后端数据交互
+4. 整合Badui地图定位API
+5. 参与讨论 以及 整合 主页九宫格图片 图片查看/视频播放 模板
 
- * user
-<img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png'>
-
- * upload
-<img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03MmZmMDIzMWRkYzMzZGZjLnBuZw?x-oss-process=image/format,png'>
