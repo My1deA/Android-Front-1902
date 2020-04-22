@@ -17,7 +17,9 @@
   
 
  * 查看图片/播放视频
-  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png' width='250' alt='查看图片/播放视频'>
+ <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
+  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png' width='250' alt='查看图片/播放视频'/>
+  ![查看图片/播放视频](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png)
 
 <br>
 #### 软件架构
