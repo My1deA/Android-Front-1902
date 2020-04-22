@@ -2,7 +2,7 @@
 
 
 #### 介绍
-> 手机端APP 实现图片/视频上传 定位 查看图片/播放视频等等功能<br> 
+> 手机端APP 实现图片/视频上传 定位 查看图片/播放视频 等等功能<br> 
 [App配置各依赖环境详情可以参考这篇博客链接](https://blog.csdn.net/Process_ing/article/details/101626325)<br>
 [后端项目Github链接](https://github.com/My1deA/Android-Back-1902)
 
@@ -14,9 +14,6 @@
  
  * 上传图片/视频
   <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
-
- * 上传图片/视频
-  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC02MWUzM2Q4OTdmYzhhNjZjLmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
 
 
 
