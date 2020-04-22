@@ -50,6 +50,6 @@ private final static String Url="http://本机IP地址:8080/MyWebTest/queryServl
 1. 设计App界面
 2. 参与设计后端架构
 3. 实现前后端数据交互
-4. 整合Badui地图定位API
+4. 整合Baidu地图定位API
 5. 参与讨论 以及 整合 主页九宫格图片 图片查看/视频播放 模板
 
