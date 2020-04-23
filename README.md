@@ -6,15 +6,17 @@
 [App配置各依赖环境详情可以参考这篇博客链接](https://blog.csdn.net/Process_ing/article/details/101626325)<br>
 [后端项目Github链接](https://github.com/My1deA/Android-Back-1902)
 
-* App主页
+* 1. App主页
 <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zOTAxMzI2YmNlMWMwM2JjLmpwZw?x-oss-process=image/format,png' width='250' alt='App主页'>
 
- * 定位
+ * 2. 定位
  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0wYWRiYzI3ZTJhM2I1Yjc3LmpwZw?x-oss-process=image/format,png' width='250' alt='定位'>
  
- * 上传图片/视频
+ * 3. 上传图片/视频
   <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03YjRkY2Y2NmY4OTM5YzY0LmpwZw?x-oss-process=image/format,png' width='250' alt='上传图片/视频'>
-
+  
+ * 4. 查看图片/播放视频
+  <img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC02YzBkMTZhZjZjNDVjYmRjLmpwZw?x-oss-process=image/format,png'  alt='查看图片/播放视频'>
 
 #### 软件架构
  后端开发环境：Eclipse + Mysql + Jsp<br>
@@ -52,4 +54,11 @@ private final static String Url="http://本机IP地址:8080/MyWebTest/queryServl
 3. 实现前后端数据交互
 4. 整合Baidu地图定位API
 5. 参与讨论 以及 整合 主页九宫格图片 图片查看/视频播放 模板
+
+#### 数据库样例
+* 1. user
+<img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC0zNjZjNjNiZmM4MjYwNzgzLnBuZw?x-oss-process=image/format,png'/>
+
+* 2. upload
+<img src='https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTExMzA1NC03MmZmMDIzMWRkYzMzZGZjLnBuZw?x-oss-process=image/format,png'/>
 
